@@ -19,8 +19,20 @@
   </div>
 
   <!-- Pokemon list -->
-  <div *ngIf="!loading && !error"
-    class="h-[calc(100svh-100px)] grid grid-cols-3 gap-2 md:grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] justify-items-center overflow-auto">
-    <app-pokemon-card *ngFor="let pokemon of filteredList; let i = index" [pokemonData]="pokemon"></app-pokemon-card>
+  <div *ngIf="!loading && !error" class="space-y-4">
+    <div class="h-[calc(100svh-200px)] grid grid-cols-3 gap-2 md:grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] justify-items-center overflow-auto">
+      <app-pokemon-card *ngFor="let pokemon of filteredList; let i = index" [pokemonData]="pokemon"></app-pokemon-card>
+    </div>
+    
+    <!-- Loading more indicator -->
+    <div *ngIf="loadingMore" class="flex justify-center py-4">
+      <div class="text-center">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-2"></div>
+        <p class="text-gray-600 text-sm">Cargando más Pokémon...</p>
+      </div>
+    </div>
+    
+    <!-- Ver más button - only show when not searching -->
+    <app-ver-mas *ngIf="!loadingMore && !error && filteredList.length === pokemonList.length" (loadMore)="loadMorePokemon()"></app-ver-mas>
   </div>
 </section>
