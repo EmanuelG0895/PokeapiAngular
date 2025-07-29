@@ -1,0 +1,18 @@
+<div (click)="navigateToDetail(getPokemonName())"
+  class="relative max-w-[108px] max-h-[104px] min-w-[104px] min-h-[108px] rounded-lg shadow-[2px_2px_2px_1px_var(--tw-shadow-color,_rgb(0_0_0_/_.1)),_0_1px_1px_1px_var(--tw-shadow-color,_rgb(0_0_0_/_.1))] overflow-hidden cursor-pointer">
+  <div class="flex flex-col h-full w-full">
+    <div class="w-full h-full bg-white">
+      <p class="text-[8px] md:mb-1 md:text-base font-medium text-medium text-end py-1 px-2">
+        # {{ getPokemonId() }}
+      </p>
+    </div>
+    <img loading="lazy" class="absolute max-w-[72px] max-h-[72px] top-0 bottom-5 left-0 right-0 m-auto md:top-4 z-10"
+      [src]="getPokemonImage()" [alt]="getPokemonName()" />
+
+    <div class="absolute h-[48%] w-full bottom-0 z-0 rounded-t-lg md:mt-5 bg-gray-200 text-center flex items-end justify-center">
+      <p class="text-xs md:text-base font-normal capitalize pb-1">
+        {{ getPokemonName() | titlecase }}
+      </p>
+    </div>
+  </div>
+</div>

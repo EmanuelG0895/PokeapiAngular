@@ -1,0 +1,26 @@
+<section class="rounded-lg bg-white mx-4 p-4">
+  <!-- Loading state -->
+  <div *ngIf="loading" class="w-full h-full flex items-center justify-center">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+      <p class="text-gray-600">Espera un momento entrenador, estamos hablando con el profesor...</p>
+    </div>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="error && !loading" class="w-full h-full flex items-center justify-center">
+    <div class="text-center">
+      <p class="text-red-600 mb-4">{{ error }}</p>
+      <button (click)="loadPokemonList()"
+        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+        Intentar de nuevo
+      </button>
+    </div>
+  </div>
+
+  <!-- Pokemon list -->
+  <div *ngIf="!loading && !error"
+    class="h-[calc(100svh-100px)] grid grid-cols-3 gap-2 md:grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] justify-items-center overflow-auto">
+    <app-pokemon-card *ngFor="let pokemon of filteredList; let i = index" [pokemonData]="pokemon"></app-pokemon-card>
+  </div>
+</section>

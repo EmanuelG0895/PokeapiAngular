@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@theme {
+  --color-background: #efefef;
+  --color-bug: #a7b723;
+  --color-dark: #212121;
+  --color-dragon: #7037ff;
+  --color-electric: #f9cf30;
+  --color-fairy: #e69eac;
+  --color-fighting: #c12239;
+  --color-fire: #f57d31;
+  --color-flying: #a891ec;
+  --color-ghost: #70559b;
+  --color-grass: #74cb48;
+  --color-ground: #dec16b;
+  --color-ice: #9ad6df;
+  --color-light: #e0e0e0;
+  --color-medium: #666666;
+  --color-normal: #aaa67f;
+  --color-poison: #a43e9e;
+  --color-primary: #dc0a2d;
+  --color-psychic: #fb5584;
+  --color-rock: #b69e31;
+  --color-steel: #b7b9d0;
+  --color-water: #6493eb;
+  --color-white: #ffffff;
+  --color-wireframe: #b8b8b8;
+}
+
+/* Definición explícita de bg-primary para asegurar compatibilidad */
+.bg-primary {
+  background-color: var(--color-primary);
+}
