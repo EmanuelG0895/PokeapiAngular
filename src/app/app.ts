@@ -1,12 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { PokemonListComponent } from '../components/PokemonList.component';
+import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../components/navbar/Navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, PokemonListComponent, NavbarComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

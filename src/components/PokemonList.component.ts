@@ -2,15 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonCardComponent } from './pokemonCard/PokemonCard.component';
 import { PokemonService } from '../app/services/pokemon.service';
-import { PokemonSearchComponent } from './searchBar/pokemonSearch.component';
 import { SearchService } from '../app/services/search.service';
 import { VerMasComponent } from './verMas/VerMas.component';
+import { LoadingComponent } from './loading/Loading.component';
+import { ErrorComponent } from './error/Error.component';
+import { NavbarComponent } from './navbar/Navbar.component';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CommonModule, PokemonCardComponent, PokemonSearchComponent, VerMasComponent],
+  imports: [CommonModule, PokemonCardComponent, VerMasComponent, LoadingComponent, ErrorComponent, NavbarComponent],
   templateUrl: './PokemonList.component.html',
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
@@ -114,6 +116,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
         this.loadingMore = false;
       },
     });
+  }
+
+  onRetry(): void {
+    this.loadPokemonList();
   }
 
   // Método para validar términos de búsqueda

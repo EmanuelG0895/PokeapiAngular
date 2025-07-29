@@ -1,38 +1,37 @@
-<section class="rounded-lg bg-white mx-4 p-4">
-  <!-- Loading state -->
-  <div *ngIf="loading" class="w-full h-full flex items-center justify-center">
-    <div class="text-center">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-      <p class="text-gray-600">Espera un momento entrenador, estamos hablando con el profesor...</p>
-    </div>
-  </div>
+<div class="bg-primary min-h-screen">
+  <app-navbar></app-navbar>
+  
+  <section class="rounded-lg bg-white mx-4 p-4">
+    <!-- Loading state -->
+    <app-loading 
+      *ngIf="loading" 
+      message="Espera un momento entrenador, estamos hablando con el profesor..." 
+      size="medium">
+    </app-loading>
 
-  <!-- Error state -->
-  <div *ngIf="error && !loading" class="w-full h-full flex items-center justify-center">
-    <div class="text-center">
-      <p class="text-red-600 mb-4">{{ error }}</p>
-      <button (click)="loadPokemonList()"
-        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
-        Intentar de nuevo
-      </button>
-    </div>
-  </div>
+    <!-- Error state -->
+    <app-error 
+      *ngIf="error && !loading" 
+      [message]="error" 
+      buttonText="Intentar de nuevo"
+      (retry)="onRetry()">
+    </app-error>
 
-  <!-- Pokemon list -->
-  <div *ngIf="!loading && !error" class="space-y-4">
-    <div class="h-[calc(100svh-200px)] grid grid-cols-3 gap-2 md:grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] justify-items-center overflow-auto">
-      <app-pokemon-card *ngFor="let pokemon of filteredList; let i = index" [pokemonData]="pokemon"></app-pokemon-card>
-    </div>
-    
-    <!-- Loading more indicator -->
-    <div *ngIf="loadingMore" class="flex justify-center py-4">
-      <div class="text-center">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600 mx-auto mb-2"></div>
-        <p class="text-gray-600 text-sm">Cargando más Pokémon...</p>
+    <!-- Pokemon list -->
+    <div *ngIf="!loading && !error" class="space-y-4">
+      <div class="h-[calc(100svh-200px)] grid grid-cols-3 gap-2 md:grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] justify-items-center overflow-auto">
+        <app-pokemon-card *ngFor="let pokemon of filteredList; let i = index" [pokemonData]="pokemon"></app-pokemon-card>
       </div>
+      
+      <!-- Loading more indicator -->
+      <app-loading 
+        *ngIf="loadingMore" 
+        message="Cargando más Pokémon..." 
+        size="small">
+      </app-loading>
+      
+      <!-- Ver más button - only show when not searching -->
+      <app-ver-mas *ngIf="!loadingMore && !error && filteredList.length === pokemonList.length" (loadMore)="loadMorePokemon()"></app-ver-mas>
     </div>
-    
-    <!-- Ver más button - only show when not searching -->
-    <app-ver-mas *ngIf="!loadingMore && !error && filteredList.length === pokemonList.length" (loadMore)="loadMorePokemon()"></app-ver-mas>
-  </div>
-</section>
+  </section>
+</div>

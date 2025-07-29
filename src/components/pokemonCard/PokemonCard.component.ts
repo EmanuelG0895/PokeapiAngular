@@ -1,7 +1,7 @@
 // Importaciones necesarias para crear un componente Angular
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 // Decorador @Component: Define la configuración del componente
@@ -11,7 +11,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   // standalone: true - Indica que es un componente independiente (no necesita NgModule)
   standalone: true,
   // imports: Módulos que este componente necesita para funcionar
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   // templateUrl: Archivo HTML que contiene la plantilla del componente
   templateUrl: './PokemonCard.component.html',
 })
@@ -40,7 +40,7 @@ export class PokemonCardComponent {
   navigateToDetail(pokemonName: string): void {
     const sanitizedName = this.sanitizeInput(pokemonName);
     if (sanitizedName) {
-      this.router.navigate(['/pokemon-detail', sanitizedName]);
+      this.router.navigate(['/pokemon', sanitizedName]);
     }
   }
 
